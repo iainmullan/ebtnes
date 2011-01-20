@@ -50,7 +50,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH',  DS . 'usr' . DS . 'lib' . DS . 'cake' . DS . 'stable' . DS . '1.3.0');
+		define('CAKE_CORE_INCLUDE_PATH',  ROOT);
 	}
 
 /**
