@@ -21,14 +21,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php __('CakePHP: the rapid development php framework:'); ?>
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title>ebtn.es - a url shortener, for me</title>
 	<?php
-//		echo $this->Html->meta('icon');
-echo $this->Html->css('reset');
-echo $this->Html->css('ebtnes');
+		echo $this->Html->css('reset');
+		echo $this->Html->css('ebtnes');
 		echo $scripts_for_layout;
 	?>
 </head>
