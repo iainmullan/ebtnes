@@ -28,7 +28,7 @@
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'items', 'action' => 'create'));
-	Router::connect('/items/*', array('controller' => 'items'));
+	Router::connect('/items/:action', array('controller' => 'items'));
 	Router::connect('/*', array('controller' => 'items', 'action' => 'go'));
 
 ?>
