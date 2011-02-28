@@ -49,6 +49,25 @@ class ItemsController extends AppController {
 		}
 
 	}
+	
+	function bm() {
+		$u = $this->params['url']['u'];
+
+		$short = substr(md5($u), 0, 4);
+		$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));
+		
+		if (!$item) {
+			$this->Item->create();
+			$this->data['Item']['shortcode'] = $short;
+			$this->Item->save($this->data);
+			$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));
+		} else {
+			CakeLog::write('items', 'Item already exists for '.$this->data['Item']['url']);
+		}
+
+		$this->set('item', $item);
+
+	}
 
 }
 ?>

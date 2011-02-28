@@ -31,4 +31,6 @@
 	Router::connect('/items/:action/*', array('controller' => 'items'));
 	Router::connect('/*', array('controller' => 'items', 'action' => 'go'));
 
+	Router::parseExtensions();
+
 ?>
