@@ -18,7 +18,7 @@ class ItemsController extends AppController {
 			$referer = $this->RequestHandler->getReferer();
 			CakeLog::write('clicks', $shortcode.' '.$referer);
 
-			header("Referer: http://ebtn.es");
+			header("Referer: ".Router::url('/'));
 			// use a 301 redirect to your destination
 			header("Location: $url", TRUE, 301);
 			exit;
@@ -39,13 +39,14 @@ class ItemsController extends AppController {
 			if (!$item) {
 				$this->Item->create();
 				$this->data['Item']['shortcode'] = $short;
-				$this->Item->save($this->data);
-				$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));
+				if ($this->Item->save($this->data)) {
+					$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));					
+					$this->set('item', $item);
+				}
 			} else {
 				CakeLog::write('items', 'Item already exists for '.$this->data['Item']['url']);
 			}
 
-			$this->set('item', $item);
 		}
 
 	}

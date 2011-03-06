@@ -1,11 +1,15 @@
 body {
 	font-family: verdana;
-	text-align: center;
 }
 
 h1 {
-	margin-bottom: 30px;
-	font-size: 16px;
+	margin-bottom: 10px;
+	font-size: 2em;
+}
+
+h1 a {
+	text-decoration: none;
+	color: inherit;
 }
 
 #container {
@@ -14,21 +18,53 @@ h1 {
 }
 
 input.title {
-	font-size: 20px;
+	font-size: 1.0em;
 	padding: 5px;
-	margin: 5px;
+	width: 80%;
+	border: 1px solid #ccc;
 }
+
 label {
-	display: block;
+	display: none;
 }
 
 p.nb {
 	margin-top: 30px;
 	color: #777;
-	font-size: 12px;
+	font-size: 0.7em;
+	margin-bottom: 10px;
 }
 
 #footer {
-	margin-top: 50px;
 	color: #555;
+	border-top: 1px solid #ccc;
+	text-align: right;
+	font-size: 0.7em;
+}
+
+#shorten-form {
+	margin-bottom: 70px;
+}
+
+#shorten-form .input {
+	width: 80%;
+}
+#shorten-form .submit {	
+	width: 20%;
+}
+#shorten-form .submit input {	
+	margin-left: 20px;
+}
+
+#shorten-form .input,
+#shorten-form .submit {
+	display:inline;
+}
+
+div.error-message {
+	width: 80%;
+	background-color: #fcc;
+	padding: 5px;
+	border: 1px solid #f99;
+	margin-bottom: 10px;
 }

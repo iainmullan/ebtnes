@@ -1,2 +1,2 @@
 
-URL not found: http://ebtn.es/<?php echo $shortcode; ?>
+URL not found: <?php echo Router::url('/',true).$shortcode; ?>

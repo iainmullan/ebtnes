@@ -21,7 +21,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>ebtn.es - a url shortener, for me</title>
+	<title><?php echo Configure::read('site.title'); ?></title>
 	<?php
 		echo $this->Html->css('reset');
 		echo $this->Html->css('ebtnes');
@@ -29,9 +29,16 @@
 	?>
 </head>
 <body>
+<?php
+	if (Configure::read('github-badge')) {
+		?>
+		<a href="http://github.com/ebotunes/ebtnes"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a> 
+		<?php
+	}
+?>
 	<div id="container">
 		<div id="header">
-			<h1>ebtn.es</h1>
+			<h1><?php echo $this->Html->link('ebtn.es', '/'); ?></h1>
 		</div>
 		<div id="content">
 
@@ -40,8 +47,10 @@
 			<?php echo $content_for_layout; ?>
 
 		</div>
+		<p class="nb">This is a URL shortener created for my own personal use. No guarantees are offered about the stability of any URLs generated with it.</p>
 		<div id="footer">
-			an <a href="http://www.ebotunes.com">ebotunes</a> production
+			<p>an <a href="http://www.ebotunes.com">ebotunes</a> production - 
+			powered by <a href="http://github.com/ebotunes/ebtnes" target="_blank">ebtn.es</a></p>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
