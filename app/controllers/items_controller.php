@@ -51,6 +51,26 @@ class ItemsController extends AppController {
 
 	}
 	
+	function get() {
+		$long = $this->params['url']['u'];
+		$short = substr(md5($long), 0, 4);
+		$url = 'http://www.ebtn.es/'.$short;
+		echo json_encode(array('data'=>array('url' => $url)));
+		exit();
+
+		// $this->Item->create();
+		// 
+		// $this->data['Item']['shortcode'] = $short;
+		// 
+		// if ($this->Item->save($this->data)) {
+		// 	$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));					
+		// 	$this->set('item', $item);
+		// 	echo $short;
+		// 	exit();
+		// }
+		
+	}
+	
 	function bm() {
 		$u = $this->params['url']['u'];
 
