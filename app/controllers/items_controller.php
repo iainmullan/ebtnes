@@ -30,22 +30,33 @@ class ItemsController extends AppController {
 	}
 	
 	function create() {
-		
-		if (!empty($this->data)) {
 
-			$short = substr(md5($this->data['Item']['url']), 0, 4);
+		$short = false;
+
+		if (!empty($this->data)) {
+			$long = $this->data['Item']['url'];
+			$short = substr(md5($long), 0, 4);
+		} else if (!empty($this->params['url']['u'])) {
+			$long = $this->params['url']['u'];
+			$short = substr(md5($long), 0, 4);			
+		}
+		
+		if ($short) {
+
 			$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));
-			
 			if (!$item) {
 				$this->Item->create();
-				$this->data['Item']['shortcode'] = $short;
-				if ($this->Item->save($this->data)) {
-					$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));					
-					$this->set('item', $item);
+
+				$data = array('Item'=>array('url'=>$long, 'shortcode'=>$short));
+
+				if ($this->Item->save($data)) {
+					$item = $this->Item->find('first', array('conditions'=>array('shortcode'=>$short)));
 				}
 			} else {
-				CakeLog::write('items', 'Item already exists for '.$this->data['Item']['url']);
+				CakeLog::write('items', 'Item already exists for '.$long);
 			}
+
+			$this->set('item', $item);
 
 		}
 
@@ -54,8 +65,16 @@ class ItemsController extends AppController {
 	function get() {
 		$long = $this->params['url']['u'];
 		$short = substr(md5($long), 0, 4);
-		$url = 'http://www.ebtn.es/'.$short;
-		echo json_encode(array('data'=>array('url' => $url)));
+		$url = Router::url('/',true).$short;
+		
+		echo $url;
+		exit();
+		
+		echo json_encode(array(
+			'data'=>array('url' => $url),
+			'status_code' => '200',
+			'status_text' => 'OK'
+		));
 		exit();
 
 		// $this->Item->create();
